@@ -1228,6 +1228,8 @@ class PyramidDiTForVideoGeneration:
         return image
 
     def decode_latent(self, latents, save_memory=True, inference_multigpu=False):
+        print(f"Decoding latents={latents.shape}")
+
         # only the main process needs vae decoding
         if inference_multigpu and get_rank() != 0:
             return None
