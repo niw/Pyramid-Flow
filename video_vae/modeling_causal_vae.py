@@ -363,6 +363,7 @@ class CausalVideoVAE(ModelMixin, ConfigMixin):
         for idx, frames in enumerate(frame_list):
             if torch.mps.is_available():
                 torch.mps.empty_cache()
+            print(f"Decode chunk {idx}({frames.shape}) in {len(frame_list)}")
             if idx == 0:
                 z_h = self.post_quant_conv(frames, is_init_image=True, temporal_chunk=True)
                 dec = self.decoder(z_h, is_init_image=True, temporal_chunk=True)
@@ -492,6 +493,7 @@ class CausalVideoVAE(ModelMixin, ConfigMixin):
         for i in range(0, z.shape[3], overlap_size):
             row = []
             for j in range(0, z.shape[4], overlap_size):
+                print(f"Decode tile {i}, {j}")
                 tile = z[:, :, :, i : i + self.tile_latent_min_size, j : j + self.tile_latent_min_size]
                 if temporal_chunk:
                     decoded = self.chunk_decode(tile, window_size=window_size)
