@@ -117,3 +117,5 @@ venv.bak/
 dmypy.json
 .bak
 
+.gradio/
+/pyramid_flow_model
