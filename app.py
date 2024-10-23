@@ -20,8 +20,7 @@ model_cache_lock = threading.Lock()
 
 # Configuration
 model_repo = "rain1011/pyramid-flow-sd3"  # Replace with the actual model repository on Hugging Face
-model_dtype = "bf16" # Support bf16 and fp32
-
+model_dtype = "bf16"                      # Support bf16 and fp32
 variants = {
     'high': 'diffusion_transformer_768p',  # For high-resolution version
     'low': 'diffusion_transformer_384p'    # For low-resolution version
@@ -90,8 +89,6 @@ def initialize_model(variant):
 
     if model_dtype == "bf16":
         torch_dtype_selected = torch.bfloat16
-    elif model_dtype == "fp16":
-        torch_dtype_selected = torch.float16
     else:
         torch_dtype_selected = torch.float32
 
