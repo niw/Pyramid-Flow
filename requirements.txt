@@ -21,7 +21,7 @@ scikit-image
 sentencepiece
 spacy==3.7.5
 streamlit
-timm==0.6.12
+timm
 tqdm
 torchmetrics
 tiktoken
